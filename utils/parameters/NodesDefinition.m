@@ -3,13 +3,16 @@ function Nodes = NodesDefinition(display)
 % Function used to define the nodes of the simulation. 
 % This function is to be tailored according to the specified mission, since
 % the selection of the nodes is heavily mission-dependent.
+% This file could be substituted by a .yml input file to be read from the
+% main script.
 
 % ------------------------------------------------------------------------------ %
 %
 % The current nodes definition is valid for the e.Inspector ESA mission. 
 %
 % The selected nodes are:
-% - the 6 external surfaces (with solar panels assumed as part of the surfaces
+% - the 6 external surfaces
+% - the solar panels 4 surfaces
 % - the propulsion unit
 % - the EPS subsystem
 % - the antenna
@@ -104,6 +107,62 @@ Nodes.S6.T0                 = cent2Kelvin(20); % [K]
 Nodes.S6.thickness          = 0.01; % [m]
 Nodes.S6.Ac                 = 0.01; % [m^2]
 
+%% Solar Panel 1
+Nodes.SP1.A                 = 1; % [m^2]
+Nodes.SP1.rho               = 2700; % [km/m^3]
+Nodes.SP1.V                 = 0.2; % [m^3]
+Nodes.SP1.cv                = 900; % [J/kgK]
+Nodes.SP1.alfa              = 0.1; % [-]
+Nodes.SP1.emissivity        = 0.1; % [-]
+Nodes.SP1.conductivity      = 237; % [W/mK]
+Nodes.SP1.Pdiss             = 0; % [W]
+Nodes.SP1.F                 = 0.5; % [-]
+Nodes.SP1.T0                = cent2Kelvin(20); % [K]
+Nodes.SP1.thickness         = 0.01; % [m]
+Nodes.SP1.Ac                = 0.01; % [m^2]
+
+%% Solar Panel 2
+Nodes.SP2.A                 = 1; % [m^2]
+Nodes.SP2.rho               = 2700; % [km/m^3]
+Nodes.SP2.V                 = 0.2; % [m^3]
+Nodes.SP2.cv                = 900; % [J/kgK]
+Nodes.SP2.alfa              = 0.1; % [-]
+Nodes.SP2.emissivity        = 0.1; % [-]
+Nodes.SP2.conductivity      = 237; % [W/mK]
+Nodes.SP2.Pdiss             = 0; % [W]
+Nodes.SP2.F                 = 0.5; % [-]
+Nodes.SP2.T0                = cent2Kelvin(20); % [K]
+Nodes.SP2.thickness         = 0.01; % [m]
+Nodes.SP2.Ac                = 0.01; % [m^2]
+
+%% Solar Panel 3
+Nodes.SP3.A                 = 1; % [m^2]
+Nodes.SP3.rho               = 2700; % [km/m^3]
+Nodes.SP3.V                 = 0.2; % [m^3]
+Nodes.SP3.cv                = 900; % [J/kgK]
+Nodes.SP3.alfa              = 0.1; % [-]
+Nodes.SP3.emissivity        = 0.1; % [-]
+Nodes.SP3.conductivity      = 237; % [W/mK]
+Nodes.SP3.Pdiss             = 0; % [W]
+Nodes.SP3.F                 = 0.5; % [-]
+Nodes.SP3.T0                = cent2Kelvin(20); % [K]
+Nodes.SP3.thickness         = 0.01; % [m]
+Nodes.SP3.Ac                = 0.01; % [m^2]
+
+%% Solar Panel 4
+Nodes.SP4.A                 = 1; % [m^2]
+Nodes.SP4.rho               = 2700; % [km/m^3]
+Nodes.SP4.V                 = 0.2; % [m^3]
+Nodes.SP4.cv                = 900; % [J/kgK]
+Nodes.SP4.alfa              = 0.1; % [-]
+Nodes.SP4.emissivity        = 0.1; % [-]
+Nodes.SP4.conductivity      = 237; % [W/mK]
+Nodes.SP4.Pdiss             = 0; % [W]
+Nodes.SP4.F                 = 0.5; % [-]
+Nodes.SP4.T0                = cent2Kelvin(20); % [K]
+Nodes.SP4.thickness         = 0.01; % [m]
+Nodes.SP4.Ac                = 0.01; % [m^2]
+
 %% Propulsion Unit
 Nodes.Prop.A                = 0.1; % [m^2]
 Nodes.Prop.rho              = 2700; % [km/m^3]
@@ -161,10 +220,12 @@ Nodes.PL.thickness          = 0.05; % [m]
 Nodes.PL.Ac                 = 0.01; % [m^2]
 
 if display
-    fprintf('-------------------------------------Nodes Temperatures [K]---------------------------------------- \n');
-    fprintf('T_surface1 T_surface2 T_surface3 T_surface4 T_surface5 T_surface6 T_prop T_eps T_antenna T_payload \n');
-    fprintf('%9.1f %9.1f %9.1f %9.1f %10.1f %10.1f %9.1f %7.1f %8.1f %8.1f \n', ...
-        Nodes.S1.T0,Nodes.S2.T0,Nodes.S3.T0,Nodes.S4.T0,Nodes.S5.T0,Nodes.S6.T0,Nodes.Prop.T0,Nodes.Eps.T0,Nodes.Antenna.T0,Nodes.PL.T0)
+    fprintf('-------------------------------------Nodes Temperatures [K]---------------------------------------------------------------------------------------- \n');
+    fprintf(['T_surface1 T_surface2 T_surface3 T_surface4 T_surface5 T_surface6 T_solar_panel1 T_solar_panel2 T_solar_panel3 T_solar_panel4 ' ...
+        'T_prop T_eps T_antenna T_payload \n']);
+    fprintf('%9.1f %9.1f %9.1f %9.1f %10.1f %10.1f %12.1f %13.1f %15.1f %15.1f %11.1f %6.1f %8.1f %8.1f \n', ...
+        Nodes.S1.T0,Nodes.S2.T0,Nodes.S3.T0,Nodes.S4.T0,Nodes.S5.T0,Nodes.S6.T0,Nodes.SP1.T0,Nodes.SP2.T0,Nodes.SP3.T0,Nodes.SP4.T0, ...
+        Nodes.Prop.T0,Nodes.Eps.T0,Nodes.Antenna.T0,Nodes.PL.T0)
 end
 
 end
