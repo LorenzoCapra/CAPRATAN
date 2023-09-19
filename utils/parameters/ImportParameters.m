@@ -4,7 +4,7 @@ function [Settings, Spacecraft] = ImportParameters(n_sim, display)
 % and put them inside two structures called Settings and Spacecraft respectively.
 
 %% Simulation settings
-Settings.simulationTime = 100; % [s]
+Settings.simulationTime = 6000; % [s]
 Settings.absTolerance = 1e-8;
 Settings.relTolerance = 1e-8;
 Settings.jd0 = 2458941; % [days]
@@ -41,7 +41,7 @@ Spacecraft.params.N=[N1_1,N1_2,N1_3,N1_4,N1_5,N1_6,N1_7,N1_8,N1_9,N1_10];
 % Geometric dimensions of the satellite
 L_s=0.2; %m - Small side
 L_l=0.3; %m - Long side
-L_p=0.5; %m - Panel Extension
+L_p=0.7; %m - Panel Extension
 % Center of mass position (for now it is ideal)
 xcom = 0.1; % [m]
 ycom = 0.1; % [m]
@@ -83,7 +83,7 @@ Spacecraft.params.c_abs=1-Spacecraft.params.c_dif-Spacecraft.params.c_spe;
 %% Spacecraft orbital parameters
 Spacecraft.orbit.Re = 6378; % [km]
 Spacecraft.orbit.Rp = Spacecraft.orbit.Re + 664; % [km]
-Spacecraft.orbit.e = 0.01; % [-]
+Spacecraft.orbit.e = 0.009638; % [-]
 Spacecraft.orbit.Ra = Spacecraft.orbit.Rp*(1+Spacecraft.orbit.e)/(1-Spacecraft.orbit.e); % [km]
 Spacecraft.orbit.a = 0.5*(Spacecraft.orbit.Rp + Spacecraft.orbit.Ra); % [km]
 Spacecraft.orbit.ii = deg2rad(98); % [rad]

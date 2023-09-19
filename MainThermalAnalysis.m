@@ -44,7 +44,7 @@ Nodes = NodesDefinition(true);
 %% Simulation
 tspan = [0, Settings.simulationTime];
 time = 0;
-dt = 1;
+dt = 10;
 index = 0;
 
 % Arrays for storing
@@ -67,6 +67,7 @@ Thermal.Tprop = zeros(floor(tspan(end)/dt), 1);
 Thermal.Teps  = zeros(floor(tspan(end)/dt), 1);
 Thermal.Tant  = zeros(floor(tspan(end)/dt), 1);
 Thermal.Tpl   = zeros(floor(tspan(end)/dt), 1);
+Orbit.eclipse = zeros(floor(tspan(end)/dt), 1);
 
 % Integration accuracy options
 options = odeset('RelTol', Settings.relTolerance, 'AbsTol', Settings.absTolerance);
@@ -122,6 +123,8 @@ while time < tspan(end)
     Thermal.Tant(index)  = T(end,13);
     Thermal.Tpl(index)   = T(end,14);
 
+    Orbit.eclipse(index)       = Eclipse;
+
     % Update current orbital, attitude and thermal state
     SpacecraftState = [Orbit.r(index,:), Orbit.v(index,:), Orbit.q(index,:), Orbit.w(index,:)];
     ThermalState = [Thermal.Ts1(index), Thermal.Ts2(index), Thermal.Ts3(index), Thermal.Ts4(index), ...
@@ -129,3 +132,6 @@ while time < tspan(end)
                     Thermal.Tsp3(index), Thermal.Tsp4(index), Thermal.Tprop(index), ...
                     Thermal.Teps(index), Thermal.Tant(index), Thermal.Tpl(index)];
 end
+
+%% Plot the postprocessing results
+ThermalPlots(Orbit, Thermal, Spacecraft, Settings)
