@@ -42,7 +42,7 @@ Nodes = NodesDefinition(true);
 [Settings, Spacecraft] = ImportParameters(n_sim, true);
 
 %% Simulation
-tspan = [0, 100];
+tspan = [0, Settings.simulationTime];
 time = 0;
 dt = 1;
 index = 0;

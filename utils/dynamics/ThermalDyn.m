@@ -33,7 +33,7 @@ Tant    = T0(13);
 Tpl     = T0(14);
 
 %% Compute general variables
-F_sc_earth = Spacecraft.orbit.Re^2 / ((Spacecraft.orbit.alt + Spacecraft.orbit.Re)^2);
+F_sc_earth = Spacecraft.orbit.Re^2 / ((Spacecraft.orbit.alt + Spacecraft.orbit.Re)^2); % [-]
 Resistance = 100; % Contact resistance [m^2K/W]
 
 %% PDE for the first surface

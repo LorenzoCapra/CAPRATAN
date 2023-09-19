@@ -17,7 +17,7 @@ Settings.Gs = 1367; % [W/m^2]
 Settings.albFactor = 0.35; % [-]
 Settings.T_deep_space = 3; % [K]
 Settings.T_earth = 253.73; % [K]
-Settings.Resistance = 100; % Contact resistance [m^2K/W]
+Settings.Resistance = 100; % Contact resistance [K/W]
 
 %% Spacecraft inertial and geometrical parameters
 Spacecraft.params.mass = 14; % [kg]
@@ -106,7 +106,7 @@ Settings.F_sc_earth = Spacecraft.orbit.Re^2 / ((Spacecraft.orbit.alt + Spacecraf
 %% Spacecraft attitude parameters
 if n_sim == 1
     Spacecraft.attitude.q0 = [0; 0; 0; 1]; % (-)
-    Spacecraft.attitude.w0 = [0; 0; 0]; % (rad/s)
+    Spacecraft.attitude.w0 = deg2rad(10)*randn(3, 1); % (rad/s)
 elseif n_sim > 1
     Spacecraft.attitude.q0 = rand(4, 1) - 0.5; % (-)
     Spacecraft.attitude.w0 = deg2rad(10)*randn(3, 1); % (rad/s)
