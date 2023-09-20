@@ -1,4 +1,4 @@
-function [a_srp, t_srp, cth] = srp_faces(r_sun, r_sat, A, nu, N_faces, R_faces, ...
+function [a_srp, t_srp, cth, theta] = srp_faces(r_sun, r_sat, A, nu, N_faces, R_faces, ...
                                     S_faces, NS, c_spe, c_dif, m)
 
     % Compute the Solar Radiation Pressure (SRP) acceleration and Torque 
@@ -66,6 +66,7 @@ function [a_srp, t_srp, cth] = srp_faces(r_sun, r_sat, A, nu, N_faces, R_faces, 
 
     % Compute cosine of the incident angle! 
     cth = dot(U_f2s, N_faces);
+    theta = acos(cth);
 
     % If the cosine is negative, the face is not facing the Sun, 
     % thus it should not contribute to the acceleration

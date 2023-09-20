@@ -53,6 +53,10 @@ Orbit.v       = zeros(floor(tspan(end)/dt), 3);
 Orbit.q       = zeros(floor(tspan(end)/dt), 4);
 Orbit.w       = zeros(floor(tspan(end)/dt), 3);
 Orbit.r_sun   = zeros(floor(tspan(end)/dt), 3);
+Orbit.eclipse = zeros(floor(tspan(end)/dt), 1);
+% Orbit.cth     = zeros(floor(tspan(end)/dt), Spacecraft.params.NS);
+load('utils\tools\cth.mat')
+Orbit.theta   = zeros(floor(tspan(end)/dt), Spacecraft.params.NS);
 Thermal.Ts1   = zeros(floor(tspan(end)/dt), 1);
 Thermal.Ts2   = zeros(floor(tspan(end)/dt), 1);
 Thermal.Ts3   = zeros(floor(tspan(end)/dt), 1);
@@ -67,7 +71,6 @@ Thermal.Tprop = zeros(floor(tspan(end)/dt), 1);
 Thermal.Teps  = zeros(floor(tspan(end)/dt), 1);
 Thermal.Tant  = zeros(floor(tspan(end)/dt), 1);
 Thermal.Tpl   = zeros(floor(tspan(end)/dt), 1);
-Orbit.eclipse = zeros(floor(tspan(end)/dt), 1);
 
 % Integration accuracy options
 options = odeset('RelTol', Settings.relTolerance, 'AbsTol', Settings.absTolerance);
@@ -93,12 +96,12 @@ while time < tspan(end)
     [Albedo, Eclipse, nu] = CheckEclipse(SpacecraftState(1:3)*1e3, Orbit.r_sun(index,:)*1e3);
 
     % Compute the cosine of the angles between each spacecraft face and the Sun direction
-    [~, ~, Spacecraft.params.cth] = srp_faces(Orbit.r_sun(index,:)*1e3, SpacecraftState(1:3)*1e3, quat2DCM(SpacecraftState(7:10)), ...
+    [~, ~, Spacecraft.params.cth, Spacecraft.params.theta] = srp_faces(Orbit.r_sun(index,:)*1e3, SpacecraftState(1:3)*1e3, quat2DCM(SpacecraftState(7:10)), ...
                                                 nu, Spacecraft.params.N_surf, Spacecraft.params.R_surf, Spacecraft.params.S_surf, ...
                                                 Spacecraft.params.NS, Spacecraft.params.c_spe, Spacecraft.params.c_dif, Spacecraft.params.mass);
 
     % Integrate the thermal dynamics of each node
-    [~, T] = ode45(@(t,x) ThermalDyn(t,x,Settings,Spacecraft,Nodes,Eclipse,Albedo), [0,dt], ThermalState, options);
+    [~, T] = ode45(@(t,x) ThermalDyn(t,x,Settings,Spacecraft,Nodes,Eclipse,Albedo,index,cth), [0,dt], ThermalState, options);
 
     % Collect orbital and attitude parameters
     Orbit.r(index,:) = y(end,1:3)';
@@ -106,6 +109,10 @@ while time < tspan(end)
     Orbit.q(index,:) = y(end,7:10)';
     Orbit.w(index,:) = y(end,11:13)';
     Spacecraft.orbit.alt = norm(Orbit.r(index,:) - Spacecraft.orbit.Re); % altitude to be used for albedo and IR view factor
+
+    Orbit.eclipse(index) = Eclipse;
+    Orbit.cth(index,:) = Spacecraft.params.cth;
+    Orbit.theta(index,:) = Spacecraft.params.theta;
 
     % Collect thermal parameters
     Thermal.Ts1(index)   = T(end,1);
@@ -122,8 +129,6 @@ while time < tspan(end)
     Thermal.Teps(index)  = T(end,12);
     Thermal.Tant(index)  = T(end,13);
     Thermal.Tpl(index)   = T(end,14);
-
-    Orbit.eclipse(index)       = Eclipse;
 
     % Update current orbital, attitude and thermal state
     SpacecraftState = [Orbit.r(index,:), Orbit.v(index,:), Orbit.q(index,:), Orbit.w(index,:)];

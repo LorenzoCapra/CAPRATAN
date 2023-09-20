@@ -105,8 +105,8 @@ Settings.F_sc_earth = Spacecraft.orbit.Re^2 / ((Spacecraft.orbit.alt + Spacecraf
 
 %% Spacecraft attitude parameters
 if n_sim == 1
-    Spacecraft.attitude.q0 = [0; 0; 0; 1]; % (-)
-    Spacecraft.attitude.w0 = deg2rad(10)*randn(3, 1); % (rad/s)
+    Spacecraft.attitude.q0 = rand(4, 1) - 0.5; % (-)
+    Spacecraft.attitude.w0 = deg2rad(1)*randn(3, 1); % (rad/s)
 elseif n_sim > 1
     Spacecraft.attitude.q0 = rand(4, 1) - 0.5; % (-)
     Spacecraft.attitude.w0 = deg2rad(10)*randn(3, 1); % (rad/s)
