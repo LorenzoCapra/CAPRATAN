@@ -116,25 +116,25 @@ grid on, hold on, xlabel('Time [s]'), ylabel('[K]'), title('Temperature of the S
 legend('Tsp2')
 
 % Plot the temperature evolution of the third SP surface
-figure(15)
+figure(16)
 plot(time, Thermal.Tsp3,'Color',color{4},LineWidth=1.5)
 grid on, hold on, xlabel('Time [s]'), ylabel('[K]'), title('Temperature of the SP surface 3')
 legend('Tsp3')
 
 % Plot the temperature evolution of the fourth SP surface
-figure(16)
+figure(17)
 plot(time, Thermal.Tsp4,'Color',color{5},LineWidth=1.5)
 grid on, hold on, xlabel('Time [s]'), ylabel('[K]'), title('Temperature of the SP surface 4')
 legend('Tsp4')
 
 % Plot eclipse step function
-figure(17)
+figure(18)
 plot(time, Orbit.eclipse,'Color',color{6},LineWidth=1.5)
 grid on, hold on, xlabel('Time [s]'), ylabel('[-]'), title('Eclipse')
 ylim([-.1, 1.1])
 
 % Plot the cosine of the angle between the faces normal and the sun direction
-figure(18)
+figure(19)
 plot(time, Orbit.cth(:,1),'Color',color{1},LineWidth=1.5)
 grid on, hold on, xlabel('Time [s]'), ylabel('[-]'), title('Cosine of surface normal angle with Sun direction')
 plot(time, Orbit.cth(:,2),'Color',color{2},LineWidth=1.5)
@@ -149,7 +149,7 @@ plot(time, Orbit.cth(:,10),'Color','y',LineWidth=1.5)
 legend('cos1','cos2','cos3','cos4','cos5','cos6','cosp1','cosp2','cosp3','cosp4')
 
 % Plot the angle between the faces normal and sun direction
-figure(19)
+figure(20)
 plot(time, Orbit.theta(:,1),'Color',color{1},LineWidth=1.5)
 grid on, hold on, xlabel('Time [s]'), ylabel('[rad]'), title('Normal angle with Sun direction')
 plot(time, Orbit.theta(:,2),'Color',color{2},LineWidth=1.5)
@@ -162,5 +162,40 @@ plot(time, Orbit.theta(:,8),'Color',color{8},LineWidth=1.5)
 plot(time, Orbit.theta(:,9),'Color','g',LineWidth=1.5)
 plot(time, Orbit.theta(:,10),'Color','y',LineWidth=1.5)
 legend('teta1','teta2','teta3','teta4','teta5','teta6','tetap1','tetap2','tetap3','tetap4')
+
+% Plot the lowest and highest temperature values for each node, with their
+% operative limits and margins
+index = 1:1:Spacecraft.params.NS+4;
+
+figure(21)
+ymin = [min(Thermal.Ts1)-273.15, min(Thermal.Ts2)-273.15, min(Thermal.Ts3)-273.15, min(Thermal.Ts4)-273.15,...
+    min(Thermal.Ts5)-273.15, min(Thermal.Ts6)-273.15, min(Thermal.Tsp1)-273.15, min(Thermal.Tsp1)-273.15,...
+    min(Thermal.Tsp3)-273.15, min(Thermal.Tsp4)-273.15, min(Thermal.Tprop)-273.15, min(Thermal.Teps)-273.15,...
+    min(Thermal.Tpl)-273.15, min(Thermal.Tant)-273.15];
+ymax = [max(Thermal.Ts1)-273.15, max(Thermal.Ts2)-273.15, max(Thermal.Ts3)-273.15, max(Thermal.Ts4)-273.15,...
+    max(Thermal.Ts5)-273.15, max(Thermal.Ts6)-273.15, max(Thermal.Tsp1)-273.15, max(Thermal.Tsp1)-273.15,...
+    max(Thermal.Tsp3)-273.15, max(Thermal.Tsp4)-273.15, max(Thermal.Tprop)-273.15, max(Thermal.Teps)-273.15,...
+    max(Thermal.Tpl)-273.15, max(Thermal.Tant)-273.15];
+
+plot([index(1), index(1)], [ymax(1), ymin(1)], 'LineWidth',10)
+grid on, hold on
+plot([index(2), index(2)], [ymax(2), ymin(2)], 'LineWidth',10)
+plot([index(3), index(3)], [ymax(3), ymin(3)], 'LineWidth',10)
+plot([index(4), index(4)], [ymax(4), ymin(4)], 'LineWidth',10)
+plot([index(5), index(5)], [ymax(5), ymin(5)], 'LineWidth',10)
+plot([index(6), index(6)], [ymax(6), ymin(6)], 'LineWidth',10)
+plot([index(7), index(7)], [ymax(7), ymin(7)], 'LineWidth',10)
+plot([index(8), index(8)], [ymax(8), ymin(8)], 'LineWidth',10)
+plot([index(9), index(9)], [ymax(9), ymin(9)], 'LineWidth',10)
+plot([index(10), index(10)], [ymax(10), ymin(10)], 'LineWidth',10)
+plot([index(11), index(11)], [ymax(11), ymin(11)], 'LineWidth',10)
+plot([index(12), index(12)], [ymax(12), ymin(12)], 'LineWidth',10)
+plot([index(13), index(13)], [ymax(13), ymin(13)], 'LineWidth',10)
+plot([index(14), index(14)], [ymax(14), ymin(14)], 'LineWidth',10)
+ylabel('Temperature [C]'), title('Temperature range of the nodes')
+
+nodes = {'S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'SP1', 'SP2', 'SP3', 'SP4', 'Prop', 'Eps', 'PL', 'Ant'};
+set(gca, 'xtick', index, 'xticklabel', nodes, 'TickLabelInterpreter', 'latex')
+xlim([0, length(index)]), ylim([min(ymin)-20, max(ymax)+20])
 
 end
