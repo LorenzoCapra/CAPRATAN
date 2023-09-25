@@ -177,7 +177,7 @@ Nodes.Prop.emissivity       = 0.21; % [-]
 Nodes.Prop.conductivity     = 200; % [W/mK]
 Nodes.Prop.Pdiss            = 5; % [W]
 Nodes.Prop.F                = 0.5; % [-]
-Nodes.Prop.T0               = cent2Kelvin(30);
+Nodes.Prop.T0               = cent2Kelvin(20);
 Nodes.Prop.thickness        = 0.05; % [m]
 Nodes.Prop.Ac               = 0.01; % [m^2]
 
@@ -191,7 +191,7 @@ Nodes.Eps.emissivity        = 0.21; % [-]
 Nodes.Eps.conductivity      = 200; % [W/mK]
 Nodes.Eps.Pdiss             = 10; % [W]
 Nodes.Eps.F                 = 0.5; % [-]
-Nodes.Eps.T0                = cent2Kelvin(30); % [K]
+Nodes.Eps.T0                = cent2Kelvin(20); % [K]
 Nodes.Eps.thickness         = 0.05; % [m]
 Nodes.Eps.Ac                = 0.01; % [m^2]
 
@@ -219,7 +219,7 @@ Nodes.PL.emissivity         = 0.21; % [-]
 Nodes.PL.conductivity       = 200; % [W/mK]
 Nodes.PL.Pdiss              = 2; % [W]
 Nodes.PL.F                  = 0.5; % [-]
-Nodes.PL.T0                 = cent2Kelvin(10); % [K]
+Nodes.PL.T0                 = cent2Kelvin(20); % [K]
 Nodes.PL.thickness          = 0.05; % [m]
 Nodes.PL.Ac                 = 0.01; % [m^2]
 

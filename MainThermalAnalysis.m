@@ -90,7 +90,7 @@ while time < tspan(end)
     [t, y] = ode45(@(t,x) SpacecraftDyn(t,x,Settings,Spacecraft), [0,dt], SpacecraftState, options);
 
     % Compute position of the Sun
-    Orbit.r_sun(index,:) = SunPosition(index, Settings);
+    Orbit.r_sun(index,:) = SunPosition(time, Settings);
 
     % Check for albedo and eclipse
     [Albedo, Eclipse, nu] = CheckEclipse(SpacecraftState(1:3)*1e3, Orbit.r_sun(index,:)*1e3);
