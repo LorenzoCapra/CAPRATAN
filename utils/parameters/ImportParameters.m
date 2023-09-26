@@ -17,7 +17,7 @@ Settings.Gs = 1367; % [W/m^2]
 Settings.albFactor = 0.35; % [-]
 Settings.T_deep_space = 3; % [K]
 Settings.T_earth = 253.73; % [K]
-Settings.Resistance = 100; % Contact resistance [K/W]
+Settings.Resistance = 100; % Contact resistance [W/Km^2]   ---- 7000 W/Km^2 ---- 600 W/Km^2
 
 %% Spacecraft inertial and geometrical parameters
 Spacecraft.params.mass = 14; % [kg]

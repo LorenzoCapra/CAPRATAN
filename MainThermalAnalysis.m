@@ -44,7 +44,7 @@ Nodes = NodesDefinition(true);
 %% Simulation
 tspan = [0, Settings.simulationTime];
 time = 0;
-dt = 10;
+dt = 100;
 index = 0;
 
 % Arrays for storing
@@ -55,7 +55,7 @@ Orbit.w       = zeros(floor(tspan(end)/dt), 3);
 Orbit.r_sun   = zeros(floor(tspan(end)/dt), 3);
 Orbit.eclipse = zeros(floor(tspan(end)/dt), 1);
 % Orbit.cth     = zeros(floor(tspan(end)/dt), Spacecraft.params.NS);
-load('utils\tools\cth.mat')
+load('utils\tools\cth_long.mat')
 Orbit.theta   = zeros(floor(tspan(end)/dt), Spacecraft.params.NS);
 Thermal.Ts1   = zeros(floor(tspan(end)/dt), 1);
 Thermal.Ts2   = zeros(floor(tspan(end)/dt), 1);
