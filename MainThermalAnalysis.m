@@ -44,7 +44,7 @@ Nodes = NodesDefinition(true);
 %% Simulation
 tspan = [0, Settings.simulationTime];
 time = 0;
-dt = 100;
+dt = 10;
 index = 0;
 
 % Arrays for storing

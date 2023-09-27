@@ -4,9 +4,9 @@ function [Settings, Spacecraft] = ImportParameters(n_sim, display)
 % and put them inside two structures called Settings and Spacecraft respectively.
 
 %% Simulation settings
-Settings.simulationTime = 6000; % [s]
-Settings.absTolerance = 1e-8;
-Settings.relTolerance = 1e-8;
+Settings.simulationTime = 24000; % [s]
+Settings.absTolerance = 1e-3;
+Settings.relTolerance = 1e-3;
 Settings.jd0 = 2458941; % [days]
 Settings.leapseconds = 37; 
 

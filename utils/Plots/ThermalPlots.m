@@ -169,29 +169,80 @@ index = 1:1:Spacecraft.params.NS+4;
 
 figure(21)
 ymin = [min(Thermal.Ts1)-273.15, min(Thermal.Ts2)-273.15, min(Thermal.Ts3)-273.15, min(Thermal.Ts4)-273.15,...
-    min(Thermal.Ts5)-273.15, min(Thermal.Ts6)-273.15, min(Thermal.Tsp1)-273.15, min(Thermal.Tsp1)-273.15,...
+    min(Thermal.Ts5)-273.15, min(Thermal.Ts6)-273.15, min(Thermal.Tsp1)-273.15, min(Thermal.Tsp2)-273.15,...
     min(Thermal.Tsp3)-273.15, min(Thermal.Tsp4)-273.15, min(Thermal.Tprop)-273.15, min(Thermal.Teps)-273.15,...
     min(Thermal.Tpl)-273.15, min(Thermal.Tant)-273.15];
 ymax = [max(Thermal.Ts1)-273.15, max(Thermal.Ts2)-273.15, max(Thermal.Ts3)-273.15, max(Thermal.Ts4)-273.15,...
-    max(Thermal.Ts5)-273.15, max(Thermal.Ts6)-273.15, max(Thermal.Tsp1)-273.15, max(Thermal.Tsp1)-273.15,...
+    max(Thermal.Ts5)-273.15, max(Thermal.Ts6)-273.15, max(Thermal.Tsp1)-273.15, max(Thermal.Tsp2)-273.15,...
     max(Thermal.Tsp3)-273.15, max(Thermal.Tsp4)-273.15, max(Thermal.Tprop)-273.15, max(Thermal.Teps)-273.15,...
     max(Thermal.Tpl)-273.15, max(Thermal.Tant)-273.15];
 
-plot([index(1), index(1)], [ymax(1), ymin(1)], 'LineWidth',10)
+grayColor = [.7 .7 .7];
+
+% Surface 1
 grid on, hold on
+plot([index(1), index(1)], [80, max(ymax)+20], 'Color', grayColor, 'LineWidth',10)
+plot([index(1), index(1)], [min(ymin)-20, -40], 'Color', grayColor, 'LineWidth',10)
+plot([index(1), index(1)], [ymax(1), ymin(1)], 'LineWidth',10)
+% Surface 2
+plot([index(2), index(2)], [80, max(ymax)+20], 'Color', grayColor, 'LineWidth',10)
+plot([index(2), index(2)], [min(ymin)-20, -40], 'Color', grayColor, 'LineWidth',10)
 plot([index(2), index(2)], [ymax(2), ymin(2)], 'LineWidth',10)
+% Surface 3
+plot([index(3), index(3)], [80, max(ymax)+20], 'Color', grayColor, 'LineWidth',10)
+plot([index(3), index(3)], [min(ymin)-20, -40], 'Color', grayColor, 'LineWidth',10)
 plot([index(3), index(3)], [ymax(3), ymin(3)], 'LineWidth',10)
+% Surface 4
+plot([index(4), index(4)], [80, max(ymax)+20], 'Color', grayColor, 'LineWidth',10)
+plot([index(4), index(4)], [min(ymin)-20, -40], 'Color', grayColor, 'LineWidth',10)
 plot([index(4), index(4)], [ymax(4), ymin(4)], 'LineWidth',10)
+% Surface 5
+plot([index(5), index(5)], [80, max(ymax)+20], 'Color', grayColor, 'LineWidth',10)
+plot([index(5), index(5)], [min(ymin)-20, -40], 'Color', grayColor, 'LineWidth',10)
 plot([index(5), index(5)], [ymax(5), ymin(5)], 'LineWidth',10)
+% Surface 6
+plot([index(6), index(6)], [80, max(ymax)+20], 'Color', grayColor, 'LineWidth',10)
+plot([index(6), index(6)], [min(ymin)-20, -40], 'Color', grayColor, 'LineWidth',10)
 plot([index(6), index(6)], [ymax(6), ymin(6)], 'LineWidth',10)
+% Solar panel surface 1
+plot([index(7), index(7)], [100, max(ymax)+20], 'Color', grayColor, 'LineWidth',10)
+plot([index(7), index(7)], [min(ymin)-20, -50], 'Color', grayColor, 'LineWidth',10)
 plot([index(7), index(7)], [ymax(7), ymin(7)], 'LineWidth',10)
+% Solar panel surface 2
+plot([index(8), index(8)], [100, max(ymax)+20], 'Color', grayColor, 'LineWidth',10)
+plot([index(8), index(8)], [min(ymin)-20, -50], 'Color', grayColor, 'LineWidth',10)
 plot([index(8), index(8)], [ymax(8), ymin(8)], 'LineWidth',10)
+% Solar panel surface 3
+plot([index(9), index(9)], [100, max(ymax)+20], 'Color', grayColor, 'LineWidth',10)
+plot([index(9), index(9)], [min(ymin)-20, -50], 'Color', grayColor, 'LineWidth',10)
 plot([index(9), index(9)], [ymax(9), ymin(9)], 'LineWidth',10)
+% Solar panel surface 4
+plot([index(10), index(10)], [100, max(ymax)+20], 'Color', grayColor, 'LineWidth',10)
+plot([index(10), index(10)], [min(ymin)-20, -50], 'Color', grayColor, 'LineWidth',10)
 plot([index(10), index(10)], [ymax(10), ymin(10)], 'LineWidth',10)
+% Propulsion unit
+plot([index(11), index(11)], [50, max(ymax)+20], 'Color', grayColor, 'LineWidth',10)
+plot([index(11), index(11)], [min(ymin)-20, -40], 'Color', grayColor, 'LineWidth',10)
 plot([index(11), index(11)], [ymax(11), ymin(11)], 'LineWidth',10)
+if 50 < ymax(11)
+    plot([index(11), index(11)], [49.8, 50.2], 'k', 'LineWidth',10)
+end
+% EPS
+plot([index(12), index(12)], [85, max(ymax)+20], 'Color', grayColor, 'LineWidth',10)
+plot([index(12), index(12)], [min(ymin)-20, -30], 'Color', grayColor, 'LineWidth',10)
 plot([index(12), index(12)], [ymax(12), ymin(12)], 'LineWidth',10)
+% Payload
+plot([index(13), index(13)], [30, max(ymax)+20], 'Color', grayColor, 'LineWidth',10)
+plot([index(13), index(13)], [min(ymin)-20, 10], 'Color', grayColor, 'LineWidth',10)
 plot([index(13), index(13)], [ymax(13), ymin(13)], 'LineWidth',10)
+if 30 < ymax(13)
+    plot([index(13), index(13)], [29.8, 30.2], 'k', 'LineWidth',10)
+end
+% Antenna
+plot([index(14), index(14)], [85, max(ymax)+20], 'Color', grayColor, 'LineWidth',10)
+plot([index(14), index(14)], [min(ymin)-20, -40], 'Color', grayColor, 'LineWidth',10)
 plot([index(14), index(14)], [ymax(14), ymin(14)], 'LineWidth',10)
+
 ylabel('Temperature [C]'), title('Temperature range of the nodes')
 
 nodes = {'S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'SP1', 'SP2', 'SP3', 'SP4', 'Prop', 'Eps', 'PL', 'Ant'};
